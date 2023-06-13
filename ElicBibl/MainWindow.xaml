@@ -1,0 +1,49 @@
+﻿<Window x:Class="ElicBibl.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ElicBibl"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <TextBlock.Foreground>
+        <SolidColorBrush Color="DarkCyan"/>
+    </TextBlock.Foreground>
+    <Grid x:Name="mainGrid" Background="Aqua">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="10">
+            <TextBlock Text="Автор" FontSize="18" HorizontalAlignment="Left" Margin="5"/>
+            <TextBox SelectionChanged="Author_SelectionChanged" x:Name="Author" Width="250" Height="25" />
+            <TextBlock Text="Название книги" HorizontalAlignment="Left" FontSize="18" Margin="5"/>
+            <TextBox SelectionChanged="NameBook_SelectionChanged"  x:Name="NameBook" Width="250" Height="25"/>
+            
+            <Button Click="Button_Click" Content="Вывести краткое содержание" FontSize="15" Margin="0 20"/>
+            
+            <TextBlock Text="Краткое содержание" FontSize="18"/>
+
+            <DataGrid x:Name="Soderj" Background="White" Height="190" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Название книги" Binding="{Binding Name}"/>
+                    <DataGridTextColumn Header="Содержание" Binding="{Binding Summary}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Margin="10" HorizontalAlignment="Left">
+            <TextBlock Text="Наличие выбранной книги и количество" FontSize="18"/>
+
+            <DataGrid x:Name="NumBook" Background="White" Height="190" Margin="0 10" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Название книги" Binding="{Binding Name}"/>
+                    <DataGridTextColumn Header="колл книг" Binding="{Binding NumberBook}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <Button Content="Вывод колличества книг" FontSize="18" Margin="5"/>
+            
+            <Button Content="Сохранить информацию в Exel" FontSize="18" Margin="5" Click="Exels"/>
+        </StackPanel>
+    </Grid>
+</Window>
